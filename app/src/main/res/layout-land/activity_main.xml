@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D7C2F3"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="503dp"
+        android:layout_height="401dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="#D7C2F3"
+        android:src="@drawable/priut" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:includeFontPadding="false"
+            android:paddingLeft="10sp"
+            android:paddingTop="40sp"
+            android:paddingRight="10sp"
+            android:shadowColor="#0E0E0E"
+            android:text="Приют   "
+            android:textAlignment="textEnd"
+            android:textColor="#000000"
+            android:textSize="45sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:paddingLeft="10sp"
+            android:paddingTop="10sp"
+            android:paddingRight="10sp"
+            android:shadowColor="#0E0E0E"
+            android:text="Доброе сердце"
+            android:textAlignment="textEnd"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/showBasicViewsActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginLeft="600dp"
+            android:layout_marginTop="20dp"
+            android:text="Сотрудник"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/showNavigationActivity"
+            android:layout_width="121dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="600dp"
+            android:layout_marginTop="20dp"
+            android:text="Щенки"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/modeBtn"
+            android:layout_width="124dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="600dp"
+            android:layout_marginTop="20dp"
+            android:text="Контакты"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+</RelativeLayout>
