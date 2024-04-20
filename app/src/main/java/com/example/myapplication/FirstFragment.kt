@@ -62,9 +62,9 @@ class FirstFragment : Fragment(),MyClickListener {
         intent.putExtra("experience", user.experience)// Передаем объект User в Intent
         startActivity(intent)
     }
-    fun updateRecycleView() {
+     fun updateRecycleView() {
         recycle = binding.recycle
-        adapter = UserAdapter(this@FirstFragment)
+        adapter = UserAdapter(this@FirstFragment, parentFragmentManager,this)
         recycle.adapter = adapter
         adapter.setList(DatabaseHelper(requireContext()).getAllUsers())
     }
