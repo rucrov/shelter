@@ -42,15 +42,15 @@ class AddNewUser : AppCompatActivity() {
 
         imagePath.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                TODO("Not yet implemented")
+
             }
 
             override fun afterTextChanged(s: Editable?) {
-                addUserImage.execute("https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFjZXxlbnwwfHwwfHx8MA%3D%3D")
+                addUserImage.execute(imagePath.text.toString())
             }
 
         })
@@ -64,6 +64,8 @@ class AddNewUser : AppCompatActivity() {
                     jobTitlePerson.text.toString(),
                     descriptionPerson.text.toString()
                 ))
+                this.finish()
+
             }
             // обязательны имя и должность!
             else {

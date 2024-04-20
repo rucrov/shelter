@@ -46,13 +46,8 @@ class FirstFragment : Fragment(),MyClickListener {
     }
 
     private fun initial() {
-            recycle = binding.recycle
-            adapter = UserAdapter(this@FirstFragment)
-            recycle.adapter = adapter
-            adapter.setList(userList.getUsers())
+        updateRecycleView()
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -66,5 +61,16 @@ class FirstFragment : Fragment(),MyClickListener {
         intent.putExtra("jobTitle", user.jobTitle)
         intent.putExtra("experience", user.experience)// Передаем объект User в Intent
         startActivity(intent)
+    }
+    fun updateRecycleView() {
+        recycle = binding.recycle
+        adapter = UserAdapter(this@FirstFragment)
+        recycle.adapter = adapter
+        adapter.setList(DatabaseHelper(requireContext()).getAllUsers())
+    }
+
+    override fun onStart() {
+        super.onStart()
+        updateRecycleView()
     }
 }
