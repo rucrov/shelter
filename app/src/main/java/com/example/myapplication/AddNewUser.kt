@@ -17,7 +17,7 @@ import com.example.myapplication.model.DatabaseHelper
 import com.example.myapplication.model.User
 
 
-class AddNewUser : AppCompatActivity() {
+class AddNewUser() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,6 +36,16 @@ class AddNewUser : AppCompatActivity() {
         val descriptionPerson: TextView = findViewById(R.id.experience)
         val imagePath: TextView = findViewById(R.id.imagePath)
         val addUserImage = ImageLoader(findViewById(R.id.addUserImage))
+        var id: Long = -1
+        var isUpdate = false
+        if (intent.getStringExtra("name")!= null){
+            isUpdate = true
+            id = intent.getLongExtra("id", -1)
+            fullnamePerson.text = intent.getStringExtra("name")
+            jobTitlePerson.text = intent.getStringExtra("jobTitle")
+            descriptionPerson.text = intent.getStringExtra("experience")
+            imagePath.text = intent.getStringExtra("photo")
+        }
 
         val saveButton: Button = findViewById(R.id.saveButton)
         val clearButton: Button = findViewById(R.id.clearButton)
@@ -57,13 +67,25 @@ class AddNewUser : AppCompatActivity() {
 
         saveButton.setOnClickListener(View.OnClickListener {
             if (fullnamePerson.text.toString() != "" && jobTitlePerson.text.toString() != ""){
-                db.addUser(User(
-                    0,
-                    imagePath.text.toString(),
-                    fullnamePerson.text.toString(),
-                    jobTitlePerson.text.toString(),
-                    descriptionPerson.text.toString()
-                ))
+                if (isUpdate){
+                    db.updateUser(
+                        User(id,
+                            imagePath.text.toString(),
+                            fullnamePerson.text.toString(),
+                            jobTitlePerson.text.toString(),
+                            descriptionPerson.text.toString()))
+                }
+                else {
+                    db.addUser(
+                        User(
+                            0,
+                            imagePath.text.toString(),
+                            fullnamePerson.text.toString(),
+                            jobTitlePerson.text.toString(),
+                            descriptionPerson.text.toString()
+                        )
+                    )
+                }
                 this.finish()
 
             }
@@ -80,8 +102,6 @@ class AddNewUser : AppCompatActivity() {
             descriptionPerson.text = ""
             imagePath.text = ""
         })
-
-
 
     }
 }

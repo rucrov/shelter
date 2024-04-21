@@ -9,6 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.myapplication.databinding.ActivityBasicViewsBinding
+import com.example.myapplication.model.User
 
 class BasicViewsActivity : AppCompatActivity() {
 

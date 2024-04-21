@@ -5,8 +5,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +20,7 @@ interface MyClickListener{
 }
 
 
-class UserAdapter(val listener: MyClickListener) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(val listener: MyClickListener, val fragmentManager: FragmentManager, val fragment: FirstFragment) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private var usersList = emptyList<User>()
 
@@ -26,7 +28,7 @@ class UserAdapter(val listener: MyClickListener) : RecyclerView.Adapter<UserAdap
         val imageView: ImageView = view.findViewById(R.id.imageView)
         val firstNameView: TextView = view.findViewById(R.id.nameTextView)
         val companyView: TextView = view.findViewById(R.id.companyTextView)
-
+        val moreButton: ImageButton = view.findViewById(R.id.moreButton)
 
     }
 
@@ -46,6 +48,10 @@ class UserAdapter(val listener: MyClickListener) : RecyclerView.Adapter<UserAdap
         holder.itemView.setOnClickListener {
             listener.onClick(usersList[position])
         }
+
+        holder.moreButton.setOnClickListener(View.OnClickListener {
+            FirstFragmentDialog(usersList[position],fragment).show(fragmentManager,"dialog")
+        })
     }
 
     override fun getItemCount(): Int {

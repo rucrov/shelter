@@ -35,10 +35,9 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         values.put("id", 1);
         values.put("name", "Сыроежкин Аркадий Михайлович");
         values.put("job_title", "ветеринар");
-        values.put("experience", "u",);
-        values.put("photo", "gr",);
+        values.put("experience", "u");
+        values.put("photo", "gr");
         db.insert(TABLE_USERS,null,values);
-//        db.close()
         
     }
 
@@ -53,7 +52,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         values.put(KEY_JOB_TITLE, user.jobTitle)
         values.put(KEY_EXPERIENCE, user.experience)
         db.insert(TABLE_USERS, null, values)
-//        db.close()
+
     }
 
     fun getAllUsers(): List<User> {
@@ -75,6 +74,22 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         }
         cursor.close()
         return userList
+    }
+
+    fun deleteUser(id: Long){
+        val selectQuery = "Delete from $TABLE_USERS where id=$id"
+        this.readableDatabase.execSQL(selectQuery)
+    }
+
+    fun updateUser(user: User){
+        val values = ContentValues()
+
+        values.put(KEY_PHOTO, user.photo)
+        values.put(KEY_NAME, user.name)
+        values.put(KEY_JOB_TITLE, user.jobTitle)
+        values.put(KEY_EXPERIENCE, user.experience)
+        this.readableDatabase.update(TABLE_USERS, values, "$KEY_ID = ?", arrayOf<String>(user.id.toString()))
+
     }
 //
 //    fun getUserById(id: Long): User? {
